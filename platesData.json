@@ -1,0 +1,53 @@
+[
+    {
+        "nome": "Macarrão Espaguette",
+        "preço": "29,99",
+        "availables": false,
+        "descriçao": "Deliciosa massa caseira com molho de tomate caseiro, carne moida e queijo",
+        "ingredientes": [
+            "Massa",
+            "Molho",
+            "Tomates",
+            "Acompanhamentos"
+        ],
+        "category": "Primeiro"
+    },
+    {
+        "nome": "Macarrão Ninho",
+        "preço": "39,99",
+        "availables": true,
+        "descriçao": "Deliciosa massa caseira com molho branco brocolis e bacon + queijo",
+        "ingredientes": [
+            "Massa",
+            "Molho",
+            "Acompanhamentos"
+        ],
+        "category": "Primeiro"
+    },
+    {
+        "nome": "Macarrão Penne",
+        "preço": "49,99",
+        "availables": true,
+        "descriçao": "Deliciosa massa caseira com molho rose, file frango + queijo",
+        "ingredientes": [
+            "Massa",
+            "Molho",
+            "Tomates",
+            "Acompanhamentos"
+        ],
+        "category": "Side"
+    },
+    {
+        "nome": "Macarrão Parafuso",
+        "preço": "49,99",
+        "availables": true,
+        "descriçao": "Deliciosa massa caseira com molho de tomates em pedaços, presunto em cubos + queijo",
+        "ingredientes": [
+            "Massa",
+            "Molho",
+            "Tomates",
+            "Acompanhamentos"
+        ],
+        "category": "Outro"
+    }
+]
