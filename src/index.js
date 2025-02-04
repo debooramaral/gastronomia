@@ -5,6 +5,7 @@ import { config } from 'dotenv'
 import authRouter from './auth/auth.js'
 import usersRouter from './routes/users.js'
 import platesRouter from './routes/plates.js'
+import ordersRouter from './routes/orders.js'
 
 config() // Já inicia pegando as configurações de dotenv
 
@@ -36,6 +37,7 @@ async function main() {
     app.use('/auth', authRouter)
     app.use('/users', usersRouter)
     app.use('/plates', platesRouter)
+    app.use('/orders', ordersRouter)
 
     //Rodar a aplicação
     app.listen(port, () => {
