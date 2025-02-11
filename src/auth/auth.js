@@ -2,15 +2,15 @@ import express from 'express'
 import passport from 'passport'
 import LocalStrategy from 'passport-local'
 import crypto from 'crypto'
-import { Mongo } from '../database/mongo.js'
+import { mongoInstance } from '../database/mongo.js'
 import jwt from 'jsonwebtoken'
 import { ObjectId } from 'mongodb'
 
 const collectionName = 'users' //Coleção usada no SGBD
 
-//Controle de Usuário e decriptação
+//Controle de Usuário e decriptação - ChatGPT:  acessamos mongoInstance.db corretamente.
 passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, callback) => {
-    const user = await Mongo.db
+    const user = await mongoInstance.db
         .collection(collectionName)
         .findOne({ email: email })
 

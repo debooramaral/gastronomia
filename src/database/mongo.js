@@ -1,24 +1,27 @@
-import { text } from "express"
 import { MongoClient } from "mongodb"
-import connect from "passport/lib/framework/connect.js"
 
-export const Mongo = {
-    async connect({ mongoConnectionString, mongoDbName }) {
-        try {
-            const client = new MongoClient(mongoConnectionString) //create client
-            
-            await client.connect() //conexão do client
-
-            const db = client.db(mongoDbName) //Indicando qual é o database
-
-            //Dois elementos que a conexão terá que trazer, nesta função
-            this.client = client
-            this.db = db
-
-            return 'Conectado ao Mongo !'
-
-        } catch (error) {
-            return { text: 'Error durante a conexão com mongo', error }
-        }
+//ChatGPT: criamos uma classe Mongo e exportamos uma única instância mongoInstance.
+class Mongo {
+    constructor() { //Dois elementos que a conexão terá que trazer, nesta função
+        this.client = null
+        this.db = null
     }
 }
+
+    // Método para conectar ao MongoDB
+    async connect({ mongoConnectionString, mongoDbName }) {
+    try {
+        this.client = new MongoClient(mongoConnectionString) // Cria o cliente
+        await this.client.connect() // Conexão do cliente
+        console.log("Conectado ao Mongo!")
+
+        this.db = this.client.db(mongoDbName) // Define o banco de dados
+    } catch (error) {
+        console.error("Erro ao conectar ao MongoDB:", error)
+        throw error
+    }
+}
+}
+
+// Criamos e exportamos uma única instância da classe
+const mongoInstance = new Mongo();
