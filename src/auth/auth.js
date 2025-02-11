@@ -2,15 +2,15 @@ import express from 'express'
 import passport from 'passport'
 import LocalStrategy from 'passport-local'
 import crypto from 'crypto'
-import { mongoInstance } from '../database/mongo.js'
+import { Mongo } from '../database/mongo.js'
 import jwt from 'jsonwebtoken'
 import { ObjectId } from 'mongodb'
 
 const collectionName = 'users' //Coleção usada no SGBD
 
-//Controle de Usuário e decriptação - ChatGPT:  acessamos mongoInstance.db corretamente.
+//Controle de Usuário e decriptação 
 passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, callback) => {
-    const user = await mongoInstance.db
+    const user = await Mongo.db
         .collection(collectionName)
         .findOne({ email: email })
 
@@ -20,6 +20,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, passwor
 
     const saltBuffer = user.salt.buffer
 
+    //Controle da senha
     crypto.pbkdf2(password, saltBuffer, 310000, 16, 'sha256', (error, hashedPassword) => {
         if (error) {
             return callback(null, false)

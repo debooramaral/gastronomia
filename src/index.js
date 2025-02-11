@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { mongoInstance } from './database/mongo.js'
+import { Mongo } from './database/mongo.js'
 import { config } from 'dotenv'
 import authRouter from './auth/auth.js'
 import usersRouter from './routes/users.js'
@@ -12,16 +12,14 @@ config() // Já inicia pegando as configurações de dotenv
 async function main() { 
     //Porta
     const hostname = 'localhost'
-    const port = 3000
+    const port = 3000 
 
     //Criação de aplicação
     const app = express()
 
-    //Conexão com o MongoDB antes de carregar as rotas - ChatGPT: chamamos await mongoInstance.connect() antes de carregar as rotas.
-    await mongoInstance.connect({
-        mongoConnectionString: process.env.MONGO_CS,
-        mongoDbName: process.env.MONGO_DB_NAME
-    })
+    //Conexão ao bando de dados
+    const mongoConnection = await Mongo.connect({ mongoConnectionString: process.env.MONGO_CS, mongoDbName: process.env.MONGO_DB_NAME})
+    console.log(mongoConnection)
 
     //Funcionalidades da aplicação
     app.use(express.json()) // arruma a resposta do servidor
