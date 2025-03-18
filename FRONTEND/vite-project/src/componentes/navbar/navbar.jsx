@@ -3,6 +3,8 @@ import { LuShoppingCart, LuUserRound, LuMenu } from "react-icons/lu";
 import { Drawer } from "@mui/material";
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   //Inicializo o menu suspenso como falso, fechado
   const [openMenu, setOpenMenu] = useState(false);
@@ -15,28 +17,36 @@ export default function Navbar() {
   return (
     <nav className={styles.navbarContainer}>
       <div className={styles.navbarItems}>
-        <img className={styles.logo} src="/chapeu-de-chef-monocromatico-com-colher-e-garfo_602006-29-removebg-preview.png" alt=""/>
+        <Link to={'/'}>
+          <img className={styles.logo}
+            src="/chapeu-de-chef-monocromatico-com-colher-e-garfo_602006-29-removebg-preview.png"
+            alt=""/>
+        </Link>
         <div className={styles.navbarLinksContainer}>
-          <a href="" className={styles.navbarLink}> Home</a>
-          <a href="" className={styles.navbarLink}> Plates</a>
-          <LuShoppingCart className={styles.navbarLink} />
-          <LuUserRound className={styles.navbarLink} />
+          <Link to={'/'} className={styles.navbarLink}>Home</Link>
+          <Link to={'/plates'} className={styles.navbarLink}>Plates</Link>
+          <Link to={'/cart'}><LuShoppingCart className={styles.navbarLink} /></Link>
+          <Link to={'/profile'}><LuUserRound className={styles.navbarLink} /></Link>
         </div>
       </div>
 
       <div className={styles.mobileNavbarItems}>
-        <img className={styles.logo} src="/chapeu-de-chef-monocromatico-com-colher-e-garfo_602006-29-removebg-preview.png" alt=""/>
+        <Link>
+          <img className={styles.logo}
+            src="/chapeu-de-chef-monocromatico-com-colher-e-garfo_602006-29-removebg-preview.png"
+            alt=""/>
+        </Link>
         <div className={styles.mobileNavbarBtns}>
-          <LuShoppingCart className={styles.navbarLink} />
-          <LuMenu className={styles.navbarLink} onClick={handleOpenMenu} />
+          <Link to={'/cart'}><LuShoppingCart className={styles.navbarLink} /></Link>
+          <Link><LuMenu className={styles.navbarLink} onClick={handleOpenMenu} /></Link>
         </div>
       </div>
 
-      <Drawer anchor="right" open={openMenu} onClose={handleOpenMenu} >
+      <Drawer anchor="right" open={openMenu} onClose={handleOpenMenu}>
         <div className={styles.drawer}>
-            <a href="" className={styles.navbarLink}> Home</a>
-            <a href="" className={styles.navbarLink}> Plates</a>
-            <a href="" className={styles.navbarLink}> Profile</a>
+          <Link to={'/'} className={styles.navbarLink}>Home</Link>
+          <Link to={'/plates'} className={styles.navbarLink}>Plates</Link>
+          <Link to={'/profile'} className={styles.navbarLink}>Profile</Link>
         </div>
       </Drawer>
     </nav>
